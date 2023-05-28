@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cristianvillamil.platziwallet.R
+import com.cristianvillamil.platziwallet.ui.factory.MessagesFactory
+import com.cristianvillamil.platziwallet.ui.factory.MessagesFactory.Companion.TYPE_ERROR
 import com.cristianvillamil.platziwallet.ui.home.FavoriteTransfer
 import com.cristianvillamil.platziwallet.ui.home.HomeContract
 import com.cristianvillamil.platziwallet.ui.home.presenter.HomePresenter
@@ -63,5 +65,8 @@ class HomeFragment : Fragment(), HomeContract.View {
 
     override fun showFavoriteTransfers(favoriteTransfer: List<FavoriteTransfer>) {
         favoriteTransferAdapter.setData(favoriteTransfer)
+        val dialogFactory = MessagesFactory()
+        val errorDialog = dialogFactory.getDialog(requireContext(), TYPE_ERROR)
+        errorDialog.show()
     }
 }
